@@ -8,13 +8,45 @@ namespace Backend
 {
     internal class Item
     {
+        private static string? _itemStartIndicator;
+        private static string? _itemEndIndicator;
+
+        private static string getRandomNoise()
+        {
+            const int NOISE_AMNT = 1024;
+
+            Random random = new Random();
+            string randomNoise = "";
+
+            for (int i = 0; i < NOISE_AMNT; i++)
+            {
+                randomNoise += (char)random.Next(32, 126);
+            }
+
+            return randomNoise;
+        }
+
         public static string ITEM_START
         {
-            get { return "_____ITEM_START_____"; }
+            get 
+            { 
+                if(_itemStartIndicator == null)
+                {
+                    _itemStartIndicator = "_____ITEM_START_____" + getRandomNoise();
+                }
+                return _itemStartIndicator;
+            }
         }
         public static string ITEM_END
         {
-            get { return "_____ITEM_END_____"; }
+            get
+            {
+                if (_itemEndIndicator == null)
+                {
+                    _itemEndIndicator = "_____ITEM_END_____" + getRandomNoise();
+                }
+                return _itemEndIndicator;
+            }
         }
         public Item(string name, string description, double price, string imageURL = "")
         {

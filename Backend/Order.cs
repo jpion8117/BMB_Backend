@@ -24,13 +24,20 @@ namespace Backend
         {
             get { return _tax; }
         }
+
         public double Total
         {
             get { return _total; }
         }
+
+        /// <summary>
+        /// Get: Returns _subTotal
+        /// Set: (private) sets _subTotal, calculates _tax and _total
+        /// </summary>
         public double SubTotal
         {
             get { return _subTotal; }
+            
             private set 
             { 
                 _subTotal = value;
@@ -39,6 +46,10 @@ namespace Backend
             }
         }
 
+        /// <summary>
+        /// Add an item to the current order and update the totals 
+        /// </summary>
+        /// <param name="newItem">Item to add, can be a normal Item or an EnhancedItem</param>
         public void addToOrder(Item newItem)
         {
             //add item to the orderItems Array
@@ -48,6 +59,18 @@ namespace Backend
             SubTotal += newItem.Price;
         }
 
+        /// <summary>
+        /// retrieves the order details in a string array that can be processed and presented to the user on the frontend
+        /// each item's details start at the next index after Item.ITEM_START and end at the index before Item.ITEM_END
+        /// this allows more flexability in the size of order detail arrays. All return arrays will follow the same format
+        /// with 0 being the index immediatly following Item.ITEM_START
+        ///     0: represents item name
+        ///     1: represents item description
+        ///     2: represents URL to the item's image
+        ///     3: item's total in currency formated string
+        ///     4+: every index after 3 represents one enhacment added to this item until you reach Item.ITEM_END
+        /// </summary>
+        /// <returns>An array of strings contianing the details of an order ready to be formated and presented to the user</returns>
         public string[] getOrderDetails()
         {
             //create a container to hold the string array
