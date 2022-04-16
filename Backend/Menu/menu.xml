@@ -43,5 +43,13 @@
 			<name>+ cheese</name>
 			<price>0.50</price>
 		</enhancment>
+		<enhancment>
+			<name>+ hot sauce</name>
+			<price>1.50</price>
+		</enhancment>
+		<enhancment>
+			<name>+ atomic ass destroyer sauce</name>
+			<price>2.50</price>
+		</enhancment>
 	</enhancmentItems>
 </main>
