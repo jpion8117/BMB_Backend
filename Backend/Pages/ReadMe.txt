@@ -1,0 +1,1 @@
+﻿Please put all your pages in this folder.
